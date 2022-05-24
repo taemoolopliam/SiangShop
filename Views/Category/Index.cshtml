@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "หมวดหมู่";
+}
+<section class="content">
+    <div class="row">
+        <div class="col-8">
+            <div class="card card-info card-tabs">
+                <div class="card-header">
+                    <h3 class="card-title"><b>ข้อมูลหมวดหมู่</b></h3>
+                </div>
+                <div class="card-body">
+                    <table id="example1" class="table table-bordered table-hover">
+                        <thead>
+                            <tr style="background-color:#F1EFEF;">
+                                <th style="font-weight: bold;">ลำดับ</th>
+                                <th style="font-weight: bold;">หมวดหมู่</th>
+                                <th style="font-weight: bold;">จัดการข้อมูล</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-success card-tabs">
+                <div class="card-header">
+                    <h3 class="card-title"><b>จัดการข้อมูลหมวดหมู่</b></h3>
+                </div>
+                <div class="card-body">
+                    <form id="addcat">
+                        <div class="form-group">
+                            @Html.Label("categoryName", "ชื่อหมวดหมู่", new { @class = "control-label col-md-4" })
+                            @Html.Editor("categoryName", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <input hidden="" name="categoryID" id="categoryID" value="0" />
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success mb-30 w-100" id="btnsubmit">ยืนยัน</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-danger mb-30 w-100" id="btnedit">ยกเลิกการแก้ไข</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="~/Scripts/manage/Category.js"></script>
+}
+
+

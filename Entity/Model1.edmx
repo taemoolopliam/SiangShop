@@ -1,0 +1,1047 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SiangShopModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="billID" />
+          </Key>
+          <Property Name="billID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="saleID" Type="varchar" MaxLength="10" />
+          <Property Name="paymentType" Type="int" />
+          <Property Name="amount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="customerID" Type="varchar" MaxLength="5" />
+          <Property Name="userID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="brandID" />
+          </Key>
+          <Property Name="brandID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="brandName" Type="varchar" MaxLength="50" />
+          <Property Name="categoryID" Type="varchar" MaxLength="5" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Cheque">
+          <Key>
+            <PropertyRef Name="checkID" />
+          </Key>
+          <Property Name="checkID" Type="varchar" MaxLength="12" Nullable="false" />
+          <Property Name="checkName" Type="varchar" MaxLength="100" />
+          <Property Name="branch" Type="varchar" MaxLength="100" />
+          <Property Name="userID" Type="varchar" MaxLength="50" />
+          <Property Name="billID" Type="varchar" MaxLength="12" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" />
+          <Property Name="lastname" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="varchar(max)" />
+          <Property Name="district" Type="varchar" MaxLength="100" />
+          <Property Name="amphur" Type="varchar" MaxLength="100" />
+          <Property Name="province" Type="varchar" MaxLength="6" />
+          <Property Name="zipcode" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="KeepProduct">
+          <Key>
+            <PropertyRef Name="keepProductID" />
+          </Key>
+          <Property Name="keepProductID" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="totalPrice" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="datekeep" Type="datetime" />
+          <Property Name="supplierID" Type="varchar" MaxLength="5" />
+          <Property Name="userID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="KeepProductDetail">
+          <Key>
+            <PropertyRef Name="keepProductDetailID" />
+          </Key>
+          <Property Name="keepProductDetailID" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="keepProductID" Type="varchar" MaxLength="11" />
+          <Property Name="productID" Type="varchar" MaxLength="7" />
+          <Property Name="amount" Type="int" />
+          <Property Name="capitalPrice" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="varchar" MaxLength="7" Nullable="false" />
+          <Property Name="productName" Type="varchar" MaxLength="50" />
+          <Property Name="amount" Type="int" />
+          <Property Name="barcode" Type="varchar" MaxLength="15" />
+          <Property Name="categoryID" Type="varchar" MaxLength="5" />
+          <Property Name="brandID" Type="varchar" MaxLength="5" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchaseID" />
+          </Key>
+          <Property Name="purchaseID" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="totalPrice" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="datePurchase" Type="datetime" />
+          <Property Name="supplierID" Type="varchar" MaxLength="5" />
+          <Property Name="userID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="purchaseDetailID" />
+          </Key>
+          <Property Name="purchaseDetailID" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="purchaseID" Type="varchar" MaxLength="11" />
+          <Property Name="productID" Type="varchar" MaxLength="7" />
+          <Property Name="amount" Type="int" />
+          <Property Name="capitalPrice" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="saleID" />
+          </Key>
+          <Property Name="saleID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="totalPrice" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="dateSale" Type="datetime" />
+          <Property Name="userID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="SaleDeatil">
+          <Key>
+            <PropertyRef Name="saleDeatilID" />
+          </Key>
+          <Property Name="saleDeatilID" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="saleID" Type="varchar" MaxLength="10" />
+          <Property Name="productID" Type="varchar" MaxLength="7" />
+          <Property Name="amount" Type="int" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplierID" />
+          </Key>
+          <Property Name="supplierID" Type="varchar" MaxLength="5" Nullable="false" />
+          <Property Name="supplierName" Type="varchar" MaxLength="50" />
+          <Property Name="telephone" Type="varchar" MaxLength="10" />
+          <Property Name="address" Type="varchar(max)" />
+          <Property Name="district" Type="varchar" MaxLength="100" />
+          <Property Name="amphur" Type="varchar" MaxLength="100" />
+          <Property Name="province" Type="varchar" MaxLength="6" />
+          <Property Name="zipcode" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="lastname" Type="varchar" MaxLength="50" />
+          <Property Name="address" Type="varchar" MaxLength="100" />
+          <Property Name="district" Type="varchar" MaxLength="100" />
+          <Property Name="amphur" Type="varchar" MaxLength="100" />
+          <Property Name="province" Type="varchar" MaxLength="100" />
+          <Property Name="zipcode" Type="varchar" MaxLength="5" />
+          <Property Name="role" Type="int" />
+          <Property Name="status" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Bill_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Sale">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="0..1" />
+          <End Role="Bill" Type="Self.Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="saleID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="saleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Brand_Category">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="Brand" Type="Self.Brand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Brand">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_Bill">
+          <End Role="Bill" Type="Self.Bill" Multiplicity="0..1" />
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="billID" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="billID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Cheque" Type="Self.Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeepProductDetail_KeepProduct">
+          <End Role="KeepProduct" Type="Self.KeepProduct" Multiplicity="0..1" />
+          <End Role="KeepProductDetail" Type="Self.KeepProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeepProduct">
+              <PropertyRef Name="keepProductID" />
+            </Principal>
+            <Dependent Role="KeepProductDetail">
+              <PropertyRef Name="keepProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeepProductDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="KeepProductDetail" Type="Self.KeepProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="KeepProductDetail">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="brandID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="brandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Supplier">
+          <End Role="Supplier" Type="Self.Supplier" Multiplicity="0..1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="supplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Role="Purchase" Type="Self.Purchase" Multiplicity="0..1" />
+          <End Role="PurchaseDetail" Type="Self.PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseID" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="purchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_User">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Sale" Type="Self.Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDeatil_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="SaleDeatil" Type="Self.SaleDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="SaleDeatil">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDeatil_Sale">
+          <End Role="Sale" Type="Self.Sale" Multiplicity="0..1" />
+          <End Role="SaleDeatil" Type="Self.SaleDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="saleID" />
+            </Principal>
+            <Dependent Role="SaleDeatil">
+              <PropertyRef Name="saleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SiangShopModelStoreContainer">
+          <EntitySet Name="Bill" EntityType="Self.Bill" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cheque" EntityType="Self.Cheque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeepProduct" EntityType="Self.KeepProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KeepProductDetail" EntityType="Self.KeepProductDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleDeatil" EntityType="Self.SaleDeatil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bill_Customer" Association="Self.FK_Bill_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Sale" Association="Self.FK_Bill_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Brand_Category" Association="Self.FK_Brand_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Brand" EntitySet="Brand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_Bill" Association="Self.FK_Cheque_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_User" Association="Self.FK_Cheque_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeepProductDetail_KeepProduct" Association="Self.FK_KeepProductDetail_KeepProduct">
+            <End Role="KeepProduct" EntitySet="KeepProduct" />
+            <End Role="KeepProductDetail" EntitySet="KeepProductDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeepProductDetail_Product" Association="Self.FK_KeepProductDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="KeepProductDetail" EntitySet="KeepProductDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="Self.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Supplier" Association="Self.FK_Purchase_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_User" Association="Self.FK_Purchase_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Product" Association="Self.FK_PurchaseDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="Self.FK_PurchaseDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_User" Association="Self.FK_Sale_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDeatil_Product" Association="Self.FK_SaleDeatil_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SaleDeatil" EntitySet="SaleDeatil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDeatil_Sale" Association="Self.FK_SaleDeatil_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="SaleDeatil" EntitySet="SaleDeatil" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SiangShopModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SiangShopEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bill" EntityType="SiangShopModel.Bill" />
+          <EntitySet Name="Brand" EntityType="SiangShopModel.Brand" />
+          <EntitySet Name="Category" EntityType="SiangShopModel.Category" />
+          <EntitySet Name="Cheque" EntityType="SiangShopModel.Cheque" />
+          <EntitySet Name="Customer" EntityType="SiangShopModel.Customer" />
+          <EntitySet Name="KeepProduct" EntityType="SiangShopModel.KeepProduct" />
+          <EntitySet Name="KeepProductDetail" EntityType="SiangShopModel.KeepProductDetail" />
+          <EntitySet Name="Product" EntityType="SiangShopModel.Product" />
+          <EntitySet Name="Purchase" EntityType="SiangShopModel.Purchase" />
+          <EntitySet Name="PurchaseDetail" EntityType="SiangShopModel.PurchaseDetail" />
+          <EntitySet Name="Sale" EntityType="SiangShopModel.Sale" />
+          <EntitySet Name="SaleDeatil" EntityType="SiangShopModel.SaleDeatil" />
+          <EntitySet Name="Supplier" EntityType="SiangShopModel.Supplier" />
+          <EntitySet Name="User" EntityType="SiangShopModel.User" />
+          <AssociationSet Name="FK_Bill_Customer" Association="SiangShopModel.FK_Bill_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bill_Sale" Association="SiangShopModel.FK_Bill_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="Bill" EntitySet="Bill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_Bill" Association="SiangShopModel.FK_Cheque_Bill">
+            <End Role="Bill" EntitySet="Bill" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Brand_Category" Association="SiangShopModel.FK_Brand_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="Brand" EntitySet="Brand" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Brand" Association="SiangShopModel.FK_Product_Brand">
+            <End Role="Brand" EntitySet="Brand" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cheque_User" Association="SiangShopModel.FK_Cheque_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Cheque" EntitySet="Cheque" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeepProductDetail_KeepProduct" Association="SiangShopModel.FK_KeepProductDetail_KeepProduct">
+            <End Role="KeepProduct" EntitySet="KeepProduct" />
+            <End Role="KeepProductDetail" EntitySet="KeepProductDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_KeepProductDetail_Product" Association="SiangShopModel.FK_KeepProductDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="KeepProductDetail" EntitySet="KeepProductDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Product" Association="SiangShopModel.FK_PurchaseDetail_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDeatil_Product" Association="SiangShopModel.FK_SaleDeatil_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="SaleDeatil" EntitySet="SaleDeatil" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Supplier" Association="SiangShopModel.FK_Purchase_Supplier">
+            <End Role="Supplier" EntitySet="Supplier" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_User" Association="SiangShopModel.FK_Purchase_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Purchase" EntitySet="Purchase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="SiangShopModel.FK_PurchaseDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchase" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Sale_User" Association="SiangShopModel.FK_Sale_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Sale" EntitySet="Sale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDeatil_Sale" Association="SiangShopModel.FK_SaleDeatil_Sale">
+            <End Role="Sale" EntitySet="Sale" />
+            <End Role="SaleDeatil" EntitySet="SaleDeatil" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="billID" />
+          </Key>
+          <Property Name="billID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="saleID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="paymentType" Type="Int32" />
+          <Property Name="amount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="customerID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="SiangShopModel.FK_Bill_Customer" FromRole="Bill" ToRole="Customer" />
+          <NavigationProperty Name="Sale" Relationship="SiangShopModel.FK_Bill_Sale" FromRole="Bill" ToRole="Sale" />
+          <NavigationProperty Name="Cheque" Relationship="SiangShopModel.FK_Cheque_Bill" FromRole="Bill" ToRole="Cheque" />
+        </EntityType>
+        <EntityType Name="Brand">
+          <Key>
+            <PropertyRef Name="brandID" />
+          </Key>
+          <Property Name="brandID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="brandName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="categoryID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="Category" Relationship="SiangShopModel.FK_Brand_Category" FromRole="Brand" ToRole="Category" />
+          <NavigationProperty Name="Product" Relationship="SiangShopModel.FK_Product_Brand" FromRole="Brand" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="categoryID" />
+          </Key>
+          <Property Name="categoryID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="categoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="Brand" Relationship="SiangShopModel.FK_Brand_Category" FromRole="Category" ToRole="Brand" />
+        </EntityType>
+        <EntityType Name="Cheque">
+          <Key>
+            <PropertyRef Name="checkID" />
+          </Key>
+          <Property Name="checkID" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="checkName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="branch" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="billID" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bill" Relationship="SiangShopModel.FK_Cheque_Bill" FromRole="Cheque" ToRole="Bill" />
+          <NavigationProperty Name="User" Relationship="SiangShopModel.FK_Cheque_User" FromRole="Cheque" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="district" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="amphur" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="zipcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bill" Relationship="SiangShopModel.FK_Bill_Customer" FromRole="Customer" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="KeepProduct">
+          <Key>
+            <PropertyRef Name="keepProductID" />
+          </Key>
+          <Property Name="keepProductID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="datekeep" Type="DateTime" Precision="3" />
+          <Property Name="supplierID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="KeepProductDetail" Relationship="SiangShopModel.FK_KeepProductDetail_KeepProduct" FromRole="KeepProduct" ToRole="KeepProductDetail" />
+        </EntityType>
+        <EntityType Name="KeepProductDetail">
+          <Key>
+            <PropertyRef Name="keepProductDetailID" />
+          </Key>
+          <Property Name="keepProductDetailID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="keepProductID" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="productID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="capitalPrice" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="KeepProduct" Relationship="SiangShopModel.FK_KeepProductDetail_KeepProduct" FromRole="KeepProductDetail" ToRole="KeepProduct" />
+          <NavigationProperty Name="Product" Relationship="SiangShopModel.FK_KeepProductDetail_Product" FromRole="KeepProductDetail" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="productID" />
+          </Key>
+          <Property Name="productID" Type="String" Nullable="false" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="productName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="barcode" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="categoryID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="brandID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="Brand" Relationship="SiangShopModel.FK_Product_Brand" FromRole="Product" ToRole="Brand" />
+          <NavigationProperty Name="KeepProductDetail" Relationship="SiangShopModel.FK_KeepProductDetail_Product" FromRole="Product" ToRole="KeepProductDetail" />
+          <NavigationProperty Name="PurchaseDetail" Relationship="SiangShopModel.FK_PurchaseDetail_Product" FromRole="Product" ToRole="PurchaseDetail" />
+          <NavigationProperty Name="SaleDeatil" Relationship="SiangShopModel.FK_SaleDeatil_Product" FromRole="Product" ToRole="SaleDeatil" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="purchaseID" />
+          </Key>
+          <Property Name="purchaseID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="datePurchase" Type="DateTime" Precision="3" />
+          <Property Name="supplierID" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Supplier" Relationship="SiangShopModel.FK_Purchase_Supplier" FromRole="Purchase" ToRole="Supplier" />
+          <NavigationProperty Name="User" Relationship="SiangShopModel.FK_Purchase_User" FromRole="Purchase" ToRole="User" />
+          <NavigationProperty Name="PurchaseDetail" Relationship="SiangShopModel.FK_PurchaseDetail_Purchase" FromRole="Purchase" ToRole="PurchaseDetail" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="purchaseDetailID" />
+          </Key>
+          <Property Name="purchaseDetailID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="purchaseID" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="productID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Int32" />
+          <Property Name="capitalPrice" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Product" Relationship="SiangShopModel.FK_PurchaseDetail_Product" FromRole="PurchaseDetail" ToRole="Product" />
+          <NavigationProperty Name="Purchase" Relationship="SiangShopModel.FK_PurchaseDetail_Purchase" FromRole="PurchaseDetail" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="saleID" />
+          </Key>
+          <Property Name="saleID" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="totalPrice" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="dateSale" Type="DateTime" Precision="3" />
+          <Property Name="userID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Bill" Relationship="SiangShopModel.FK_Bill_Sale" FromRole="Sale" ToRole="Bill" />
+          <NavigationProperty Name="User" Relationship="SiangShopModel.FK_Sale_User" FromRole="Sale" ToRole="User" />
+          <NavigationProperty Name="SaleDeatil" Relationship="SiangShopModel.FK_SaleDeatil_Sale" FromRole="Sale" ToRole="SaleDeatil" />
+        </EntityType>
+        <EntityType Name="SaleDeatil">
+          <Key>
+            <PropertyRef Name="saleDeatilID" />
+          </Key>
+          <Property Name="saleDeatilID" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="saleID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="productID" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="SiangShopModel.FK_SaleDeatil_Product" FromRole="SaleDeatil" ToRole="Product" />
+          <NavigationProperty Name="Sale" Relationship="SiangShopModel.FK_SaleDeatil_Sale" FromRole="SaleDeatil" ToRole="Sale" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="supplierID" />
+          </Key>
+          <Property Name="supplierID" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="supplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telephone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="district" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="amphur" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="zipcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Purchase" Relationship="SiangShopModel.FK_Purchase_Supplier" FromRole="Supplier" ToRole="Purchase" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="userID" />
+          </Key>
+          <Property Name="userID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="district" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="amphur" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="province" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="zipcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="role" Type="Int32" />
+          <Property Name="status" Type="Boolean" />
+          <NavigationProperty Name="Cheque" Relationship="SiangShopModel.FK_Cheque_User" FromRole="User" ToRole="Cheque" />
+          <NavigationProperty Name="Purchase" Relationship="SiangShopModel.FK_Purchase_User" FromRole="User" ToRole="Purchase" />
+          <NavigationProperty Name="Sale" Relationship="SiangShopModel.FK_Sale_User" FromRole="User" ToRole="Sale" />
+        </EntityType>
+        <Association Name="FK_Bill_Customer">
+          <End Type="SiangShopModel.Customer" Role="Customer" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="customerID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="customerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bill_Sale">
+          <End Type="SiangShopModel.Sale" Role="Sale" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="saleID" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="saleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_Bill">
+          <End Type="SiangShopModel.Bill" Role="Bill" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Cheque" Role="Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bill">
+              <PropertyRef Name="billID" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="billID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Brand_Category">
+          <End Type="SiangShopModel.Category" Role="Category" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Brand" Role="Brand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="categoryID" />
+            </Principal>
+            <Dependent Role="Brand">
+              <PropertyRef Name="categoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Product_Brand">
+          <End Type="SiangShopModel.Brand" Role="Brand" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Brand">
+              <PropertyRef Name="brandID" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="brandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cheque_User">
+          <End Type="SiangShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Cheque" Role="Cheque" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Cheque">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeepProductDetail_KeepProduct">
+          <End Type="SiangShopModel.KeepProduct" Role="KeepProduct" Multiplicity="0..1" />
+          <End Type="SiangShopModel.KeepProductDetail" Role="KeepProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KeepProduct">
+              <PropertyRef Name="keepProductID" />
+            </Principal>
+            <Dependent Role="KeepProductDetail">
+              <PropertyRef Name="keepProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_KeepProductDetail_Product">
+          <End Type="SiangShopModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="SiangShopModel.KeepProductDetail" Role="KeepProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="KeepProductDetail">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Product">
+          <End Type="SiangShopModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="SiangShopModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDeatil_Product">
+          <End Type="SiangShopModel.Product" Role="Product" Multiplicity="0..1" />
+          <End Type="SiangShopModel.SaleDeatil" Role="SaleDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="productID" />
+            </Principal>
+            <Dependent Role="SaleDeatil">
+              <PropertyRef Name="productID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Supplier">
+          <End Type="SiangShopModel.Supplier" Role="Supplier" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Purchase" Role="Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Supplier">
+              <PropertyRef Name="supplierID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="supplierID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_User">
+          <End Type="SiangShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Purchase" Role="Purchase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Purchase">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Type="SiangShopModel.Purchase" Role="Purchase" Multiplicity="0..1" />
+          <End Type="SiangShopModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="purchaseID" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="purchaseID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Sale_User">
+          <End Type="SiangShopModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="SiangShopModel.Sale" Role="Sale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="userID" />
+            </Principal>
+            <Dependent Role="Sale">
+              <PropertyRef Name="userID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDeatil_Sale">
+          <End Type="SiangShopModel.Sale" Role="Sale" Multiplicity="0..1" />
+          <End Type="SiangShopModel.SaleDeatil" Role="SaleDeatil" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="saleID" />
+            </Principal>
+            <Dependent Role="SaleDeatil">
+              <PropertyRef Name="saleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SiangShopModelStoreContainer" CdmEntityContainer="SiangShopEntities">
+          <EntitySetMapping Name="Bill">
+            <EntityTypeMapping TypeName="SiangShopModel.Bill">
+              <MappingFragment StoreEntitySet="Bill">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="paymentType" ColumnName="paymentType" />
+                <ScalarProperty Name="saleID" ColumnName="saleID" />
+                <ScalarProperty Name="billID" ColumnName="billID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Brand">
+            <EntityTypeMapping TypeName="SiangShopModel.Brand">
+              <MappingFragment StoreEntitySet="Brand">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="brandName" ColumnName="brandName" />
+                <ScalarProperty Name="brandID" ColumnName="brandID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="SiangShopModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cheque">
+            <EntityTypeMapping TypeName="SiangShopModel.Cheque">
+              <MappingFragment StoreEntitySet="Cheque">
+                <ScalarProperty Name="billID" ColumnName="billID" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="branch" ColumnName="branch" />
+                <ScalarProperty Name="checkName" ColumnName="checkName" />
+                <ScalarProperty Name="checkID" ColumnName="checkID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer">
+            <EntityTypeMapping TypeName="SiangShopModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="amphur" ColumnName="amphur" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KeepProduct">
+            <EntityTypeMapping TypeName="SiangShopModel.KeepProduct">
+              <MappingFragment StoreEntitySet="KeepProduct">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+                <ScalarProperty Name="datekeep" ColumnName="datekeep" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="keepProductID" ColumnName="keepProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KeepProductDetail">
+            <EntityTypeMapping TypeName="SiangShopModel.KeepProductDetail">
+              <MappingFragment StoreEntitySet="KeepProductDetail">
+                <ScalarProperty Name="capitalPrice" ColumnName="capitalPrice" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="keepProductID" ColumnName="keepProductID" />
+                <ScalarProperty Name="keepProductDetailID" ColumnName="keepProductDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="SiangShopModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="brandID" ColumnName="brandID" />
+                <ScalarProperty Name="categoryID" ColumnName="categoryID" />
+                <ScalarProperty Name="barcode" ColumnName="barcode" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchase">
+            <EntityTypeMapping TypeName="SiangShopModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+                <ScalarProperty Name="datePurchase" ColumnName="datePurchase" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="purchaseID" ColumnName="purchaseID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDetail">
+            <EntityTypeMapping TypeName="SiangShopModel.PurchaseDetail">
+              <MappingFragment StoreEntitySet="PurchaseDetail">
+                <ScalarProperty Name="capitalPrice" ColumnName="capitalPrice" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="purchaseID" ColumnName="purchaseID" />
+                <ScalarProperty Name="purchaseDetailID" ColumnName="purchaseDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sale">
+            <EntityTypeMapping TypeName="SiangShopModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="userID" ColumnName="userID" />
+                <ScalarProperty Name="dateSale" ColumnName="dateSale" />
+                <ScalarProperty Name="totalPrice" ColumnName="totalPrice" />
+                <ScalarProperty Name="saleID" ColumnName="saleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleDeatil">
+            <EntityTypeMapping TypeName="SiangShopModel.SaleDeatil">
+              <MappingFragment StoreEntitySet="SaleDeatil">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="productID" ColumnName="productID" />
+                <ScalarProperty Name="saleID" ColumnName="saleID" />
+                <ScalarProperty Name="saleDeatilID" ColumnName="saleDeatilID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Supplier">
+            <EntityTypeMapping TypeName="SiangShopModel.Supplier">
+              <MappingFragment StoreEntitySet="Supplier">
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="amphur" ColumnName="amphur" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="supplierName" ColumnName="supplierName" />
+                <ScalarProperty Name="supplierID" ColumnName="supplierID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="SiangShopModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="role" ColumnName="role" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="province" ColumnName="province" />
+                <ScalarProperty Name="amphur" ColumnName="amphur" />
+                <ScalarProperty Name="district" ColumnName="district" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="userID" ColumnName="userID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

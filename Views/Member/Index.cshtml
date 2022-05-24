@@ -1,0 +1,222 @@
+﻿@{
+    ViewBag.Title = "สมาชิก";
+}
+<section class="content">
+    <div class="row">
+        <div class="col-8" id="from1">
+            <div class="card card-info card-tabs">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <b>ข้อมูลสมาชิก</b>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr style="background-color: #F1EFEF;">
+                                <th style="font-weight: bold;">ลำดับ</th>
+                                <th style="font-weight: bold;">ชื่อ</th>
+                                <th style="font-weight: bold;">นามสกุล</th>
+                                <th style="font-weight: bold;">สิทธิ์</th>
+                                <th style="font-weight: bold;">สถานะ</th>
+                                <th style="font-weight: bold;">จัดการข้อมูล</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card card-success card-tabs">
+                <div class="card-header">
+                    <h3 class="card-title">
+                        <b>จัดการข้อมูลสมาชิก</b>
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form id="AddMember">
+                        <div class="form-group">
+                            @Html.Label("role", "สิทธิ์การใช้งาน", new { @class = "control-label col-md-4" })
+                            @Html.DropDownList("role", new List<SelectListItem>
+                            {
+                                new SelectListItem {Text = "ผู้ดูแลระบบ", Value = "1"},
+                                new SelectListItem {Text = "พนักงาน", Value = "2"}
+                            }, "------------กรุณาเลือกสิทธิ์การใช้งาน----------------", new { @class = "form-control" })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("userID", "ชื่อผู้ใช้", new { @class = "control-label col-md-4" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-users"></i>
+                                    </span>
+                                </div>
+                                @Html.Editor("userID", new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label id="pass" class="control-label col-md-4">รหัสผ่าน</label>
+                            <div class="input-group" id="inputOne">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                                @Html.Editor("password", new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("confirmPassword", "ยืนยันรหัสผ่าน", new { @class = "control-label col-md-4", id = "passcon" })
+                            <div class="input-group" id="inputTwo">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-key"></i>
+                                    </span>
+                                </div>
+                                @Html.Editor("confirmPassword", new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("name", "ชื่อ", new { @class = "control-label col-md-4" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-signature"></i>
+                                    </span>
+                                </div>
+                                @Html.Editor("name", new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("lastname", "นามสกุล", new { @class = "control-label col-md-4" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fab fa-lastfm"></i>
+                                    </span>
+                                </div>
+                                @Html.Editor("lastname", new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("address", "บ้านเลขที่", new { @class = "control-label col-md-4" })
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-home"></i>
+                                    </span>
+                                </div>
+                                @Html.Editor("address", new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("district", "ตำบล", new { @class = "control-label col-md-4" })
+                            @Html.Editor("district", new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("amphur", "อำเภอ", new { @class = "control-label col-md-4" })
+                            @Html.Editor("amphur", new { htmlAttributes = new { @class = "form-control" } })
+
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("province", "จังหวัด", new { @class = "control-label col-md-4" })
+                            @Html.Editor("province", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="form-group">
+                            @Html.Label("zipcode", "รหัสไปรษณีย์", new { @class = "control-label col-md-4" })
+                            @Html.Editor("zipcode", new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <input hidden="" name="AddOoEdit" id="AddOoEdit" value="0" />
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success mb-30 w-100" id="btnsubmit">ยืนยัน</button>
+                        </div>
+                        <div class="form-group">
+                            <button type="button" class="btn btn-danger mb-30 w-100" id="btnedit">ยกเลิกการแก้ไข</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="modal fade" id="modal-default2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">เปลี่ยนรหัสผ่าน</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formRe">
+                    <input hidden name="id" id="id"/>
+                    <div class="form-group">
+                        <label class="control-label"> รหัสผ่าน</label>
+                        <input class="form-control" type="password" name="in_repass" id="in_repass" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"> ยืนยันรหัสผ่าน</label>
+                        <input class="form-control" type="password" name="in_reconpass" id="in_reconpass" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success mb-30 w-100" id="btnsubmitRE">ยืนยัน</button>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">รายละเอียดสมาชิก</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <img src="~/Assets/dist/img/PNG_USER.png" style="height:150px;width:150px;margin-left:35%" />
+                <h5 class="text-center" style="margin-top:10px" id="showname">ชื่อ : มานพ สมบรูณ์</h5>
+                <h5 class="text-center" style="margin-top:10px" id="showaddress">ที่อยู่ : 170 หมู่ 4 ตำบล หนองบัว อำเภอ เมือง จังหวัด กาญจนบุรี</h5>
+                <h5 class="text-center" style="margin-top:10px" id="showrole">ระดับสิทธิ์ : พนักงาน</h5>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">ปิด</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/manage/Member.js"></script>
+    <link rel="stylesheet" href="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+    <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dist/jquery.Thailand.min.js"></script>
+    <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+    <script type="text/javascript" src="https://earthchie.github.io/jquery.Thailand.js/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.Thailand({
+                database: '../Thailand/db.json',
+                $district: $('#district'),
+                $amphoe: $('#amphur'),
+                $province: $('#province'),
+                $zipcode: $('#zipcode')
+            });
+
+        });
+
+    </script>
+
+}
